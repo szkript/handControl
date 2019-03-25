@@ -2,6 +2,8 @@ const webcamElement = document.getElementById('webcam');
 const classifier = knnClassifier.create();
 let net;
 
+
+//itt zajlik a lényeg
 async function app() {
     console.log('Loading mobilenet..');
   
@@ -26,6 +28,7 @@ async function app() {
     document.getElementById('bal').addEventListener('click', () => addExample(0));
     document.getElementById('fel').addEventListener('click', () => addExample(1));
     document.getElementById('jobb').addEventListener('click', () => addExample(2));
+    document.getElementById('kozepso').addEventListener('click', () => addExample(3));
   
     while (true) {
       if (classifier.getNumClasses() > 0) {
@@ -34,7 +37,7 @@ async function app() {
         // Get the most likely class and confidences from the classifier module.
         const result = await classifier.predictClass(activation);
   
-        const classes = ['bal', 'fel', 'jobb'];
+        const classes = ['bal', 'fel', 'jobb', 'csicska-kristof'];
         document.getElementById('console').innerText = `
           prediction: ${classes[result.classIndex]}\n
           probability: ${result.confidences[result.classIndex]}
@@ -45,6 +48,8 @@ async function app() {
     }
   }
 
+
+//ne foglalkozz vele, csak a webcamot kezeli
 async function setupWebcam() {
     return new Promise((resolve, reject) => {
       const navigatorAny = navigator;
